@@ -76,6 +76,8 @@ public class AuthenticationService {
         return new AuthResponse(accessToken, refreshToken);
     }
 
+    // TODO Добавить метод для отзыва токенов через endpoint
+
     /**
      * Метод обновления Access Token на основе Refresh Token.
      *

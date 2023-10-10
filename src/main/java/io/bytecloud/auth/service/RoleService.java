@@ -39,10 +39,13 @@ public class RoleService {
         Role role = roleRepository.findByUserId(userId)
                 .orElseThrow(() -> new RoleNotFoundException("Role not found"));
 
+        // ? Добавляет все полномочия у конкретной роли
         List<SimpleGrantedAuthority> authorities = role.getPermissions()
                 .stream()
                 .map(permission -> new SimpleGrantedAuthority(permission.getName()))
                 .collect(Collectors.toList());
+
+        // ? Непосредственно добавляет роль пользователя
         authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
 
         return authorities;
